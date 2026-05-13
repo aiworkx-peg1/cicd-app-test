@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-app-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cicd-app-test
+  template:
+    metadata:
+      labels:
+        app: cicd-app-test
+    spec:
+      containers:
+      - name: cicd-app-test
+        image: hesuepark/cicd-app-test:latest
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
